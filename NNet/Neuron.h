@@ -5,14 +5,14 @@ public:
 	Neuron();
 	Neuron(double val);
 
-	void activate();
-	void derivate();
-	double getVal() { return this->val; }
-	double getActivatedVal() { return this->activatedVal; }
-	double getDerivatedVal() { return this->derivatedVal; }
+	void normalizeValue();
+	void diffValue();
+	double getValue();
+	double getNormalizedValue();
+	double getDiffValue();
 private:
-	double val;
-	double activatedVal;
-	double derivatedVal;
+	double mValue;
+	double mNormalizedValue;
+	double mDiffValue;
 };
 

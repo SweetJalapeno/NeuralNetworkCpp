@@ -2,21 +2,34 @@
 #include <math.h>
 
 
-Neuron::Neuron(){
-	val = 0;
+Neuron::Neuron(double value){
+	mValue = value;
+	normalizeValue();
+	diffValue();
 }
 
-Neuron::Neuron(double val)
-{
-	this->val = val;
-	activate();
-	derivate();
+
+double Neuron::getValue(){
+	return mValue;
 }
 
-void Neuron::activate(){
-	activatedVal = val / (1 + abs(val));
+
+double Neuron::getNormalizedValue(){
+	return mNormalizedValue;
 }
 
-void Neuron::derivate(){
-	derivatedVal = activatedVal*(1 - activatedVal);
+
+double Neuron::getDiffValue(){
+	return mDiffValue;
+}
+
+
+void Neuron::normalizeValue(){
+	// Cheap sigmoid: f(x) = 1 / ( 1 + |x| )
+	mNormalizedValue = mValue / (1 + abs(mValue));
+}
+
+
+void Neuron::diffValue(){
+	mDiffValue = mNormalizedValue / (1 + mNormalizedValue);
 }
